@@ -10,6 +10,14 @@
 					<a href="#" class="btn btn-default">Wish List</a>
 					<a href="#" class="btn btn-success">Buy</a>
 				</p>
+				<hr>
+				<p
+					v-if="product.user_id == authenticatedUser.id"
+				>
+					<a href="#" class="btn btn-danger" role="button" @click="$emit('delete-product')">
+						Delete
+					</a>
+				</p>
 			</div>
 		</div>
 	</div>
@@ -18,7 +26,9 @@
 <script>
 	
 	export default{
-		props: ['product']
+		props: ['product', 'authenticatedUser'],
+
+
 	}
 </script>
 
