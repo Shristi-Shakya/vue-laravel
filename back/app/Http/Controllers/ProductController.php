@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -37,7 +38,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-        $product = Product::create($request->all());
+        $product = Product::create($request->all() + ['user_id' => Auth::id()]);
         return $request->all();
     }
 
@@ -50,6 +51,7 @@ class ProductController extends Controller
     public function show($id)
     {
         //
+        return response()->json(Product::find($id));
     }
 
     /**
@@ -73,6 +75,11 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $product = Product::find($id);
+
+        $product->update($request->all());
+
+        return response()->json($product);
     }
 
     /**

@@ -17,6 +17,11 @@
 					<a href="#" class="btn btn-danger" role="button" @click="$emit('delete-product')">
 						Delete
 					</a>
+
+					<router-link  class="btn btn-success"
+						:to="'/products/'+product.id+'/edit'">
+						Edit
+					</router-link>
 				</p>
 			</div>
 		</div>
